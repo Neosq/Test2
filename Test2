@@ -1,0 +1,63 @@
+-- Animations Module for Just A Hub
+local Animations = {}
+
+Animations.Bundles = {
+    ["Adidas Aura"] = { idle = "rbxassetid://110211186840347", walk = "rbxassetid://83842218823011", run = "rbxassetid://118320322718866", jump = "rbxassetid://109996626521204", fall = "rbxassetid://95603166884636", climb = "rbxassetid://97824616490448", swim = "rbxassetid://134530128383903" },
+    ["Adidas Community"] = { idle = "rbxassetid://122257458498464", walk = "rbxassetid://122150855457006", run = "rbxassetid://82598234841035", jump = "rbxassetid://75290611992385", fall = "rbxassetid://98600215928904", climb = "rbxassetid://88763136693023", swim = "rbxassetid://133308483266208" },
+    ["Wicked Dancing"] = { idle = "rbxassetid://92849173543269", walk = "rbxassetid://73718308412641", run = "rbxassetid://135515454877967", jump = "rbxassetid://78508480717326", fall = "rbxassetid://78147885297412", climb = "rbxassetid://129447497744818", swim = "rbxassetid://110657013921774" },
+    ["Catwalk Glam"] = { idle = "rbxassetid://133806214992291", walk = "rbxassetid://109168724482748", run = "rbxassetid://81024476153754", jump = "rbxassetid://116936326516985", fall = "rbxassetid://92294537340807", climb = "rbxassetid://119377220967554", swim = "rbxassetid://134591743181628" },
+    ["NFL"] = { idle = "rbxassetid://92080889861410", walk = "rbxassetid://110358958299415", run = "rbxassetid://117333533048078", jump = "rbxassetid://119846112151352", fall = "rbxassetid://129773241321032", climb = "rbxassetid://134630013742019", swim = "rbxassetid://132697394189921" },
+    ["Wicked Popular"] = { idle = "rbxassetid://118832222982049", walk = "rbxassetid://92072849924640", run = "rbxassetid://72301599441680", jump = "rbxassetid://104325245285198", fall = "rbxassetid://121152442762481", climb = "rbxassetid://131326830509784", swim = "rbxassetid://99384245425157" },
+    ["Unboxed"] = { idle = "rbxassetid://98281136301627", walk = "rbxassetid://90478085024465", run = "rbxassetid://134824450619865", jump = "rbxassetid://121454505477205", fall = "rbxassetid://94788218468396", climb = "rbxassetid://121145883950231", swim = "rbxassetid://105962919001086" },
+    ["Adidas Sports"] = { idle = "rbxassetid://18537376492", walk = "rbxassetid://18537392113", run = "rbxassetid://18537384940", jump = "rbxassetid://18537380791", fall = "rbxassetid://18537367238", climb = "rbxassetid://18537363391", swim = "rbxassetid://18537389531" },
+    ["No Boundaries"] = { idle = "rbxassetid://18747067405", walk = "rbxassetid://18747074203", run = "rbxassetid://18747070484", jump = "rbxassetid://18747069148", fall = "rbxassetid://18747062535", climb = "rbxassetid://18747060903", swim = "rbxassetid://18747073181" },
+    ["Bold Elf"] = { idle = "rbxassetid://16738333868", walk = "rbxassetid://16738340646", run = "rbxassetid://16738337225", jump = "rbxassetid://16738336650", fall = "rbxassetid://16738333171", climb = "rbxassetid://16738332169", swim = "rbxassetid://16738339158" },
+    ["Astronaut"] = { idle = "rbxassetid://10921034824", walk = "rbxassetid://10921046031", run = "rbxassetid://10921039308", jump = "rbxassetid://10921042494", fall = "rbxassetid://10921040576", climb = "rbxassetid://10921032124", swim = "rbxassetid://10921044000" },
+    ["Toy"] = { idle = "rbxassetid://782841498", walk = "rbxassetid://782843345", run = "rbxassetid://782842708", jump = "rbxassetid://782847020", fall = "rbxassetid://782846423", climb = "rbxassetid://782843869", swim = "rbxassetid://782844582" },
+    ["Levitation"] = { idle = "rbxassetid://616006778", walk = "rbxassetid://616013216", run = "rbxassetid://616010382", jump = "rbxassetid://616008936", fall = "rbxassetid://616005863", climb = "rbxassetid://616003713", swim = "rbxassetid://616011509" },
+    ["Ninja"] = { idle = "rbxassetid://656117400", walk = "rbxassetid://656121766", run = "rbxassetid://656118852", jump = "rbxassetid://656117878", fall = "rbxassetid://656115606", climb = "rbxassetid://656114359", swim = "rbxassetid://656119721" },
+    ["Oldschool"] = { idle = "rbxassetid://5319816693", walk = "rbxassetid://5319847204", run = "rbxassetid://5319844329", jump = "rbxassetid://5319841935", fall = "rbxassetid://5319839762", climb = "rbxassetid://5319837488", swim = "rbxassetid://5319850266" },
+    ["Werewolf"] = { idle = "rbxassetid://1083195517", walk = "rbxassetid://1083218792", run = "rbxassetid://1083216690", jump = "rbxassetid://1083218792", fall = "rbxassetid://1083189019", climb = "rbxassetid://1083182000", swim = "rbxassetid://1083222527" },
+    ["Zombie"] = { idle = "rbxassetid://616158929", walk = "rbxassetid://616168032", run = "rbxassetid://616163682", jump = "rbxassetid://616161997", fall = "rbxassetid://616157476", climb = "rbxassetid://616156119", swim = "rbxassetid://616165109" },
+    ["Knight"] = { idle = "rbxassetid://657595757", walk = "rbxassetid://657552124", run = "rbxassetid://657564596", jump = "rbxassetid://658409194", fall = "rbxassetid://657600338", climb = "rbxassetid://658360781", swim = "rbxassetid://657560551" },
+    ["Elder"] = { idle = "rbxassetid://845397899", walk = "rbxassetid://845403127", run = "rbxassetid://845403856", jump = "rbxassetid://845398858", fall = "rbxassetid://845396048", climb = "rbxassetid://845392038", swim = "rbxassetid://845401742" },
+    ["Superhero"] = { idle = "rbxassetid://616111295", walk = "rbxassetid://616122287", run = "rbxassetid://616117076", jump = "rbxassetid://616115533", fall = "rbxassetid://616108001", climb = "rbxassetid://616104706", swim = "rbxassetid://616119360" },
+    ["Stylish"] = { idle = "rbxassetid://616136790", walk = "rbxassetid://616146177", run = "rbxassetid://616140816", jump = "rbxassetid://616139451", fall = "rbxassetid://616134815", climb = "rbxassetid://616133594", swim = "rbxassetid://616143378" },
+    ["Robot"] = { idle = "rbxassetid://616088211", walk = "rbxassetid://616095330", run = "rbxassetid://616091570", jump = "rbxassetid://616090535", fall = "rbxassetid://616087089", climb = "rbxassetid://616086039", swim = "rbxassetid://616092998" },
+    ["Rthro"] = { idle = "rbxassetid://2510196951", walk = "rbxassetid://2510202577", run = "rbxassetid://2510198475", jump = "rbxassetid://2510197830", fall = "rbxassetid://2510195892", climb = "rbxassetid://2510192778", swim = "rbxassetid://2510199791" },
+    ["Mage"] = { idle = "rbxassetid://707742142", walk = "rbxassetid://707897309", run = "rbxassetid://707861613", jump = "rbxassetid://707853694", fall = "rbxassetid://707829716", climb = "rbxassetid://707826056", swim = "rbxassetid://707876443" },
+    ["Cartoony"] = { idle = "rbxassetid://742637544", walk = "rbxassetid://742640026", run = "rbxassetid://742638842", jump = "rbxassetid://742637942", fall = "rbxassetid://742637151", climb = "rbxassetid://742636889", swim = "rbxassetid://742639220" },
+    ["Bubbly"] = { idle = "rbxassetid://910004836", walk = "rbxassetid://910034968", run = "rbxassetid://910034870", jump = "rbxassetid://910028516", fall = "rbxassetid://910001910", climb = "rbxassetid://909997997", swim = "rbxassetid://910030921" },
+    ["Vampire"] = { idle = "rbxassetid://1083445855", walk = "rbxassetid://1083473930", run = "rbxassetid://1083462077", jump = "rbxassetid://1083455352", fall = "rbxassetid://1083443587", climb = "rbxassetid://1083439238", swim = "rbxassetid://1083464683" },
+    ["Pirate"] = { idle = "rbxassetid://750781874", walk = "rbxassetid://750785693", run = "rbxassetid://750783738", jump = "rbxassetid://750782230", fall = "rbxassetid://750780242", climb = "rbxassetid://750779899", swim = "rbxassetid://750784579" },
+}
+
+function Animations.Apply(player, bundleName)
+    local char = player.Character
+    if not char then return end
+    local animate = char:FindFirstChild("Animate")
+    if not animate then return end
+    local bundle = Animations.Bundles[bundleName]
+    if not bundle then return end
+
+    local function setIds(folderName, id)
+        local folder = animate:FindFirstChild(folderName)
+        if folder then
+            for _, anim in pairs(folder:GetChildren()) do
+                if anim:IsA("Animation") then anim.AnimationId = id end
+            end
+        end
+    end
+
+    animate.Disabled = true
+    for animType, id in pairs(bundle) do setIds(animType, id) end
+    task.wait(0.1)
+    animate.Disabled = false
+
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if hum then
+        for _, track in pairs(hum:GetPlayingAnimationTracks()) do track:Stop(0) end
+    end
+end
+
+return Animations

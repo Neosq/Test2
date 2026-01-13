@@ -53,6 +53,6 @@ if char and char:FindFirstChild("Animate") and char:FindFirstChildOfClass("Human
         task.wait(0.1)
         animate.Disabled = false
         
-        hum:ChangeState(Enum.HumanoidStateType.Jumping)
+        hum:ChangeState(Enum.HumanoidStateType.Landed)
     end
 end

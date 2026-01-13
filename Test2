@@ -33,48 +33,43 @@ local bundles = {
     ["Pirate"] = {idle="750781874", walk="750785693", run="750783738", jump="750782230", fall="750780242", climb="750779899", swim="750784579"}
 }
 
-local finalData = {}
-
--- Вспомогательная функция, чтобы скрипт не падал, если бандл не найден
 local function getBundle(name)
-    return bundles[name] or bundles["Ninja"] -- Если не нашли, берем Ниндзя как запасной
+    return bundles[name] or bundles["Ninja"]
 end
 
+local finalData = {}
+
 if _G.HybridMode then
-    finalData.idle = getBundle(_G.H_Idle).idle
-    finalData.walk = getBundle(_G.H_Walk).walk
-    finalData.run = getBundle(_G.H_Run).run
-    finalData.jump = getBundle(_G.H_Jump).jump
-    finalData.fall = getBundle(_G.H_Fall).fall
-    finalData.climb = getBundle(_G.H_Climb).climb
-    finalData.swim = getBundle(_G.H_Swim).swim
+    finalData["idle"] = getBundle(_G.H_Idle).idle
+    finalData["walk"] = getBundle(_G.H_Walk).walk
+    finalData["run"] = getBundle(_G.H_Run).run
+    finalData["jump"] = getBundle(_G.H_Jump).jump
+    finalData["fall"] = getBundle(_G.H_Fall).fall
+    finalData["climb"] = getBundle(_G.H_Climb).climb
+    finalData["swim"] = getBundle(_G.H_Swim).swim
 else
     finalData = getBundle(_G.SelectedAnim)
 end
 
-if not finalData or not finalData.idle then return end
-
 local hum = char:FindFirstChildOfClass("Humanoid")
-local animate = char.Animate
-for _, v in pairs(hum:GetPlayingAnimationTracks()) do v:Stop(0) end
+local animate = char:FindFirstChild("Animate")
 
-for name, id in pairs(finalData) do
-    local folder = animate:FindFirstChild(name)
-    if folder then
-        for _, animObj in pairs(folder:GetChildren()) do
-            if animObj:IsA("Animation") then
-                -- ВАЖНО: проверяем, есть ли уже rbxassetid в строке
-                if not string.find(id, "rbxassetid://") then
-                    animObj.AnimationId = "rbxassetid://" .. id
-                else
-                    animObj.AnimationId = id
+if animate and hum then
+    for _, v in pairs(hum:GetPlayingAnimationTracks()) do v:Stop(0) end
+
+    for folderName, id in pairs(finalData) do
+        local folder = animate:FindFirstChild(folderName)
+        if folder then
+            for _, animObj in pairs(folder:GetChildren()) do
+                if animObj:IsA("Animation") then
+                    animObj.AnimationId = "rbxassetid://" .. tostring(id):gsub("rbxassetid://", "")
                 end
             end
         end
     end
-end
 
-animate.Disabled = true
-task.wait(0.1)
-animate.Disabled = false
-hum:ChangeState(Enum.HumanoidStateType.Landed)
+    animate.Disabled = true
+    task.wait(0.1)
+    animate.Disabled = false
+    hum:ChangeState(Enum.HumanoidStateType.Landed)
+end

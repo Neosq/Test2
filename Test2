@@ -61,8 +61,15 @@ for _, v in pairs(hum:GetPlayingAnimationTracks()) do v:Stop(0) end
 for name, id in pairs(finalData) do
     local folder = animate:FindFirstChild(name)
     if folder then
-        for _, anim in pairs(folder:GetChildren()) do
-            if anim:IsA("Animation") then anim.AnimationId = "rbxassetid://" .. id end
+        for _, animObj in pairs(folder:GetChildren()) do
+            if animObj:IsA("Animation") then
+                -- ВАЖНО: проверяем, есть ли уже rbxassetid в строке
+                if not string.find(id, "rbxassetid://") then
+                    animObj.AnimationId = "rbxassetid://" .. id
+                else
+                    animObj.AnimationId = id
+                end
+            end
         end
     end
 end

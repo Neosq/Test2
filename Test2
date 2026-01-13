@@ -34,17 +34,25 @@ local bundles = {
 }
 
 local finalData = {}
-if _G.HybridMode then
-    finalData.idle = bundles[_G.H_Idle or "Ninja"].idle
-    finalData.walk = bundles[_G.H_Walk or "Ninja"].walk
-    finalData.run = bundles[_G.H_Run or "Ninja"].run
-    finalData.jump = bundles[_G.H_Jump or "Ninja"].jump
-    finalData.fall = bundles[_G.H_Fall or "Ninja"].fall
-    finalData.climb = bundles[_G.H_Climb or "Ninja"].climb
-    finalData.swim = bundles[_G.H_Swim or "Ninja"].swim
-else
-    finalData = bundles[_G.SelectedAnim or "Ninja"]
+
+-- Вспомогательная функция, чтобы скрипт не падал, если бандл не найден
+local function getBundle(name)
+    return bundles[name] or bundles["Ninja"] -- Если не нашли, берем Ниндзя как запасной
 end
+
+if _G.HybridMode then
+    finalData.idle = getBundle(_G.H_Idle).idle
+    finalData.walk = getBundle(_G.H_Walk).walk
+    finalData.run = getBundle(_G.H_Run).run
+    finalData.jump = getBundle(_G.H_Jump).jump
+    finalData.fall = getBundle(_G.H_Fall).fall
+    finalData.climb = getBundle(_G.H_Climb).climb
+    finalData.swim = getBundle(_G.H_Swim).swim
+else
+    finalData = getBundle(_G.SelectedAnim)
+end
+
+if not finalData or not finalData.idle then return end
 
 local hum = char:FindFirstChildOfClass("Humanoid")
 local animate = char.Animate
